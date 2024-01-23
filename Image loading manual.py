@@ -188,24 +188,6 @@ plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
 
-data_augmentation = tf.keras.Sequential(
-  [
-    layers.RandomFlip("horizontal",
-                      input_shape=(img_height,
-                                  img_width,
-                                  3)),
-    layers.RandomRotation(0.1),
-    layers.RandomZoom(0.1),
-  ]
-)
-
-def custom_crop(image):
-    # 이미지 크롭: 시작점 (400, 400), 크기 (200, 300)
-    cropped_image = tf.image.crop_to_bounding_box(image, 400, 400, 200, 300)
-    return cropped_image
-
-# 데이터셋에 크롭 함수 적용
-train_ds = train_ds.map(lambda x, y: (custom_crop(x), y))
 
 #######################################
 #######################################
