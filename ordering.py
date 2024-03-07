@@ -48,3 +48,9 @@ move()
 pattern = r'\(5\)'
 pattern_ = '5'
 move()
+'''
+for i in range(5):
+    pattern = fr'\({i}\)'
+    pattern_ = f'({i})'
+    move()
+'''
