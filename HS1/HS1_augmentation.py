@@ -24,24 +24,22 @@ height_shift_range=0.05,  # randomly shift images vertically (fraction of total 
 horizontal_flip=False,  # randomly flip images
 vertical_flip=False)  # randomly flip images
 
-image_path1 = 'REAL FAIL/fake2_1.jpg'
-image_path2 = 'REAL FAIL/fake2_2.jpg'
-image_path3 = 'REAL FAIL/fake2_3.jpg'
+image_path1 = './REAL_FAIL/fake2_1.jpg'
+image_path2 = './REAL_FAIL/fake2_2.jpg'
+image_path3 = './REAL_FAIL/fake2_3.jpg'
 image1 = cv2.imread(image_path1)
 image2 = cv2.imread(image_path2)
 image3 = cv2.imread(image_path3)
 
 sample = np.stack([image1, image2, image3])
 
-image = random.choice(sample)
-image = np.expand_dims(image, 0)
-
-for i in range(1000):
+for i in range(10):
+    n = np.random.randint(0, 3)
+    image = np.expand_dims(sample[n], 0)
     datagen.fit(sample)
     iteration = datagen.flow(image, batch_size=10)
     new_image = next(iteration).astype("uint8")[0]
+    os.makedirs('./HS1_fail', exist_ok=True)
     image_name = os.path.join('./HS1_fail', f'HS1_{i}.jpg')
     cv2.imwrite(image_name, new_image)
     print("A", i)
-
-
