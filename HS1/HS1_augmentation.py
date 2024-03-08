@@ -6,9 +6,9 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import random
 import matplotlib.pyplot as plt
 import tensorflow as tf
-tf.random.set_seed(42)
-np.random.seed(42)
-random.seed(42)
+# tf.random.set_seed(42)
+# np.random.seed(42)
+# random.seed(42)
 
 datagen = ImageDataGenerator(
 featurewise_center=False,  # set input mean to 0 over the dataset
@@ -24,22 +24,33 @@ height_shift_range=0.05,  # randomly shift images vertically (fraction of total 
 horizontal_flip=False,  # randomly flip images
 vertical_flip=False)  # randomly flip images
 
-image_path1 = './REAL_FAIL/fake2_1.jpg'
-image_path2 = './REAL_FAIL/fake2_2.jpg'
-image_path3 = './REAL_FAIL/fake2_3.jpg'
-image1 = cv2.imread(image_path1)
-image2 = cv2.imread(image_path2)
-image3 = cv2.imread(image_path3)
+image_path1 = 'REAL FAIL/fake2_1.jpg' # fake2_1 이미지 파일
+image_path2 = 'REAL FAIL/fake2_2.jpg' # fake2_2 이미지 파일
+image_path3 = 'REAL FAIL/fake2_3.jpg' # fake2_3 이미지 파일
+image1 = cv2.imread(image_path1) # fake2_1 이미지 불러오기
+image2 = cv2.imread(image_path2) # fake2_2 이미지 불러오기
+image3 = cv2.imread(image_path3) # fake2_3 이미지 불러오기
 
-sample = np.stack([image1, image2, image3])
+sample = np.stack([image1, image2, image3]) # fake2_1, fake2_2, fake2_3, 합치기
 
-for i in range(10):
+n = np.random.randint(0, 3)
+image = random.choice(sample) # 이미지 3개 중에서 
+image = np.expand_dims(image, 0)
+
+for i in range(1000):
+    # datagen.fit(sample)
     n = np.random.randint(0, 3)
     image = np.expand_dims(sample[n], 0)
-    datagen.fit(sample)
     iteration = datagen.flow(image, batch_size=10)
     new_image = next(iteration).astype("uint8")[0]
-    os.makedirs('./HS1_fail', exist_ok=True)
     image_name = os.path.join('./HS1_fail', f'HS1_{i}.jpg')
+
+    check = new_image[200:600, 400:900, :]
+    # plt.imshow(check)
+    # plt.show()
+    # print("B")
+    # sys.exit()
     cv2.imwrite(image_name, new_image)
     print("A", i)
+
+# print(len(os.listdir('./HS1/HS1_pass'))) # 5816
