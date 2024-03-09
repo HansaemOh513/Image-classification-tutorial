@@ -59,7 +59,7 @@ def functional_model(height, width, outdim):
     model = Model(inputs=inputs, outputs=outputs)
     return model
 
-def data_encoder(directory):
+def data_loader(directory):
     check = os.listdir(directory)
     fail_dir = os.path.join(directory, check[0])
     pass_dir = os.path.join(directory, check[1])
@@ -91,7 +91,7 @@ def data_encoder(directory):
     y = np.vstack([np.array([[1, 0]] * len(fail_imgs)), np.array([[0, 1]] * len(pass_imgs))])
     return x, y
 
-x, y = data_encoder(directory)
+x, y = data_loader(directory)
 width, height = 128, 128
 model = functional_model(width, height, 2)
 x = tf.image.resize(x, (width, height))
