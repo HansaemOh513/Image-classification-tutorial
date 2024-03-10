@@ -14,6 +14,11 @@
 (2) https://angeloyeo.github.io/2020/09/30/SVM.html
 '''
 
+'''
+< 결과 이미지 >  :
+(1) pass_images_ex.png     (2) fail_images_ex.png     (3) PCA_result_2d.png     (4) SVM_with_PCA.png
+'''
+
 import os
 import cv2
 import numpy as np
