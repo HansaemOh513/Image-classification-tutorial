@@ -14,6 +14,18 @@
 (2) https://angeloyeo.github.io/2020/09/30/SVM.html
 '''
 
+'''
+[ fig폴더 내 결과 이미지 설명 ]
+
+(1) crop 후 'pass' 이미지 출력 결과 : pass_images_ex.png
+(2) crop 후 'fail' 이미지 출력 결과 : fail_images_ex.png
+
+(3) PCA 이용한 차원 축소 : PCA_result_2d.png
+
+(4) SVM 결정경계 시각화 : SVM_with_PCA.png
+'''
+
+
 import os
 import cv2
 import numpy as np
