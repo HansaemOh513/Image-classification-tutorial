@@ -40,7 +40,7 @@ image = np.expand_dims(image, 0)
 for i in range(1000):
     # datagen.fit(sample)
     n = np.random.randint(0, 3)
-    image = np.expand_dims(sample[n], 0)
+    image = np.expand_dims(sample[n], 0) # expand dimension of this array to bind many images generated
     iteration = datagen.flow(image, batch_size=10)
     new_image = next(iteration).astype("uint8")[0]
     image_name = os.path.join('./HS1_fail', f'HS1_{i}.jpg')
