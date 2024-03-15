@@ -1,3 +1,6 @@
+####################################################
+###########텐서플로우를 활용한 이미지 처리############
+####################################################
 import tensorflow as tf
 from tensorflow.keras import utils
 import matplotlib.pyplot as plt
@@ -16,7 +19,9 @@ directory = './HS1'
 sample = cv2.imread(os.path.join(directory, 'HS1_fail', 'HS1_0.jpg'))
 height, width, channel = sample.shape
 # 원본 이미지 사이즈 확인
-
+####################################################
+##################opencv와의 차이점##################
+####################################################
 train_data = utils.image_dataset_from_directory(
     directory,
     labels='inferred',
